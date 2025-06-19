@@ -1,12 +1,10 @@
 // Service Worker with basic caching
-const CACHE_NAME = 'v2';
+const CACHE_NAME = 'v3';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/styles/main.css',
-  '/script/main.js',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/manifest.webmanifest',
+  '/favicon.ico'
 ];
 
 self.addEventListener('install', event => {
@@ -20,6 +18,11 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Skip caching for Adsterra ads
+  if (event.request.url.includes('highperformanceformat.com')) {
+    return fetch(event.request);
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -28,27 +31,13 @@ self.addEventListener('fetch', event => {
           return response;
         }
         
-        // Clone the request
-        const fetchRequest = event.request.clone();
-        
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-            
-            // Clone the response
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-              
-            return response;
-          }
-        );
+        return fetch(event.request).catch(() => {
+          // Return offline page or fallback content
+          return new Response('You are offline', {
+            status: 200,
+            headers: { 'Content-Type': 'text/plain' }
+          });
+        });
       })
   );
 });
@@ -59,7 +48,7 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (!cacheWhitelist.includes(cacheName)) {
             return caches.delete(cacheName);
           }
         })
