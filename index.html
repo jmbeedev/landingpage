@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesothelioma Lawyer | Free Case Review 24/7 | No Win No Fee</title>
   <meta name="description" content="National mesothelioma lawyer helping victims secure compensation from asbestos companies. Contact our mesothelioma lawyer today for a free consultation.">
-  
   <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.webmanifest">
-  
+  <link rel="manifest" href="/manifest.json">
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico">
-  
+  <link rel="icon" href="favicon.ico">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#002244">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
   <style>
     /* ===== MOBILE-FIRST STYLES ===== */
     * {
@@ -34,6 +30,20 @@
       color: #333;
       position: relative;
       background: #f9f9f9;
+    }
+    
+    /* ===== VIDEO AD BACKGROUND (MOBILE-OPTIMIZED) ===== */
+    #video-ad-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: rgba(0,32,96,0.03);
+    }
+    #video-ad {
+      display: none;
     }
     
     /* ===== NAVIGATION ===== */
@@ -110,7 +120,7 @@
       display: inline-block;
     }
     
-    /* ===== AD CONTAINERS ===== */
+    /* ===== ADSTERRA ADS CONTAINER ===== */
     .ad-container {
       margin: 25px auto;
       text-align: center;
@@ -118,10 +128,6 @@
       padding: 15px;
       border-radius: 5px;
       overflow: hidden;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     
     /* ===== CONTACT FORM ===== */
@@ -430,6 +436,9 @@
       h2 {
         font-size: 1.5rem;
       }
+      #video-ad-overlay {
+        display: none;
+      }
       .stats-grid {
         grid-template-columns: 1fr;
       }
@@ -464,10 +473,27 @@
       #home {
         padding-top: 100px;
       }
+      #video-ad {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -3;
+        opacity: 0.1;
+        object-fit: cover;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Video Ad Background (Desktop Only) -->
+  <div id="video-ad-overlay"></div>
+  <video id="video-ad" autoplay muted loop playsinline>
+    <source src="placeholder.mp4" type="video/mp4">
+  </video>
 
   <!-- Loading Animation -->
   <div class="loader" id="page-loader">
@@ -500,7 +526,18 @@
     
     <!-- Adsterra Banner Ad (Top) -->
     <div class="ad-container">
-      <div id="adsterra-top-banner"></div>
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '826edd09ab7b99c6636ef1beda0fe282',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+        (location.protocol === 'https:' ? 's' : '') + 
+        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
+      </script>
     </div>
     
     <div style="max-width: 800px; margin: 0 auto;">
@@ -525,7 +562,18 @@
       
       <!-- Adsterra Rectangle Ad (Middle) -->
       <div class="ad-container">
-        <div id="adsterra-middle-rectangle"></div>
+        <script type="text/javascript">
+          atOptions = {
+            'key' : '4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+          document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+          (location.protocol === 'https:' ? 's' : '') + 
+          '://www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js"></scr' + 'ipt>');
+        </script>
       </div>
     </div>
   </section>
@@ -705,7 +753,18 @@
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
     <!-- Adsterra Banner Ad (Footer) -->
     <div class="ad-container">
-      <div id="adsterra-footer-banner"></div>
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '826edd09ab7b99c6636ef1beda0fe282',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+        (location.protocol === 'https:' ? 's' : '') + 
+        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
+      </script>
     </div>
     
     <div class="footer-menu">
@@ -740,7 +799,7 @@
     });
   </script>
 
-  <!-- Main Script -->
+  <!-- New Features Script -->
   <script>
     // Back to Top Button
     const backToTopButton = document.getElementById('back-to-top');
@@ -807,18 +866,9 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js', { 
-          scope: '/',
-          updateViaCache: 'none'
+          scope: '/'
         }).then(registration => {
           console.log('SW registered:', registration);
-          
-          // Check for updates
-          registration.update().then(() => {
-            console.log('Service Worker updated');
-          }).catch(err => {
-            console.log('Service Worker update failed:', err);
-          });
-          
         }).catch(err => {
           console.log('SW registration failed:', err);
         });
@@ -832,47 +882,38 @@
       }
     });
 
-    // Adsterra Ad Implementation
-    function loadAdsterraAd(containerId, adKey, width, height) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.innerHTML = `
-        atOptions = {
-          'key': '${adKey}',
-          'format': 'iframe',
-          'height': ${height},
-          'width': ${width},
-          'params': {}
-        };
-      `;
-      
-      const adScript = document.createElement('script');
-      adScript.type = 'text/javascript';
-      adScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
-      adScript.async = true;
-      
-      adScript.onerror = function() {
-        container.innerHTML = '<div class="ad-placeholder">Advertisement</div>';
-      };
-      
-      container.appendChild(script);
-      container.appendChild(adScript);
-    }
+    // Adsterra API Integration
+    const adsterraToken = 'df39ec5b099c30b0bd9e2c1942b82534';
+    const apiBaseUrl = 'https://api3.adsterratools.com/publisher';
     
-    // Load all ads
-    window.addEventListener('load', () => {
-      // Top Banner (728x90)
-      loadAdsterraAd('adsterra-top-banner', '826edd09ab7b99c6636ef1beda0fe282', 728, 90);
-      
-      // Middle Rectangle (300x250)
-      loadAdsterraAd('adsterra-middle-rectangle', '4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a', 300, 250);
-      
-      // Footer Banner (728x90)
-      loadAdsterraAd('adsterra-footer-banner', '826edd09ab7b99c6636ef1beda0fe282', 728, 90);
-    });
+    // Function to fetch Adsterra stats
+    async function fetchAdsterraStats() {
+      try {
+        const response = await fetch(`${apiBaseUrl}/stats.json?token=${adsterraToken}`);
+        const data = await response.json();
+        console.log('Adsterra Stats:', data);
+      } catch (error) {
+        console.error('Error fetching Adsterra stats:', error);
+      }
+    }
+  </script>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Mesothelioma Lawyer",
+    "description": "National mesothelioma lawyer firm specializing in asbestos litigation",
+    "url": "https://www.yourdomain.com",
+    "telephone": "+1-800-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    },
+    "keywords": "mesothelioma lawyer",
+    "sameAs": []
+  }
   </script>
 </body>
 </html>
