@@ -7,10 +7,10 @@
   <meta name="description" content="National mesothelioma lawyer helping victims secure compensation from asbestos companies. Contact our mesothelioma lawyer today for a free consultation.">
   
   <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/manifest.webmanifest">
   
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="/favicon.ico">
   
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,27 +34,6 @@
       color: #333;
       position: relative;
       background: #f9f9f9;
-    }
-    
-    /* ===== VIDEO AD BACKGROUND ===== */
-    #video-ad-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: rgba(0,32,96,0.03);
-    }
-    #video-ad {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -3;
-      opacity: 0.1;
-      object-fit: cover;
     }
     
     /* ===== NAVIGATION ===== */
@@ -139,18 +118,10 @@
       padding: 15px;
       border-radius: 5px;
       overflow: hidden;
-    }
-    .ad-placeholder {
-      width: 100%;
-      height: auto;
-      min-height: 100px;
-      background: #e0e0e0;
+      min-height: 90px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto;
-      font-size: 14px;
-      color: #666;
     }
     
     /* ===== CONTACT FORM ===== */
@@ -459,12 +430,6 @@
       h2 {
         font-size: 1.5rem;
       }
-      #video-ad-overlay {
-        display: none;
-      }
-      #video-ad {
-        display: none;
-      }
       .stats-grid {
         grid-template-columns: 1fr;
       }
@@ -504,14 +469,6 @@
 </head>
 <body>
 
-  <!-- Video Ad Background -->
-  <div id="video-ad-overlay"></div>
-  <video id="video-ad" autoplay muted loop playsinline>
-    <source src="https://cdn.example.com/videos/background-ad.mp4" type="video/mp4">
-    <!-- Fallback image if video doesn't load -->
-    <img src="https://cdn.example.com/images/background-fallback.jpg" style="display:none;">
-  </video>
-
   <!-- Loading Animation -->
   <div class="loader" id="page-loader">
     <div class="loader-content">
@@ -541,33 +498,9 @@
     <h1 itemprop="name">National <strong>Mesothelioma Lawyer</strong> Firm</h1>
     <p itemprop="description">Our <strong>mesothelioma lawyer</strong> team has secured over $1 billion for asbestos victims nationwide.</p>
     
-    <!-- Adsterra Banner Ad (Top) - Updated Implementation -->
+    <!-- Adsterra Banner Ad (Top) -->
     <div class="ad-container">
       <div id="adsterra-top-banner"></div>
-      <script>
-        // Async load Adsterra script
-        function loadAdsterraScript(src) {
-          return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = src;
-            script.async = true;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
-          });
-        }
-        
-        // Load top banner ad
-        loadAdsterraScript('https://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js')
-          .then(() => {
-            console.log('Top banner ad loaded successfully');
-          })
-          .catch(err => {
-            console.error('Error loading top banner ad:', err);
-            document.getElementById('adsterra-top-banner').innerHTML = 
-              '<div class="ad-placeholder">Advertisement</div>';
-          });
-      </script>
     </div>
     
     <div style="max-width: 800px; margin: 0 auto;">
@@ -590,21 +523,9 @@
       <h2>About Our <strong>Mesothelioma Lawyer</strong> Team</h2>
       <p>Our <strong>mesothelioma lawyer</strong> firm was founded in 1995 specifically to help asbestos victims. With over 25 years of experience, our <strong>mesothelioma lawyer</strong> team has handled thousands of cases against major asbestos manufacturers.</p>
       
-      <!-- Adsterra Rectangle Ad (Middle) - Updated Implementation -->
+      <!-- Adsterra Rectangle Ad (Middle) -->
       <div class="ad-container">
         <div id="adsterra-middle-rectangle"></div>
-        <script>
-          // Load rectangle ad
-          loadAdsterraScript('https://www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js')
-            .then(() => {
-              console.log('Middle rectangle ad loaded successfully');
-            })
-            .catch(err => {
-              console.error('Error loading middle rectangle ad:', err);
-              document.getElementById('adsterra-middle-rectangle').innerHTML = 
-                '<div class="ad-placeholder">Advertisement</div>';
-            });
-        </script>
       </div>
     </div>
   </section>
@@ -782,21 +703,9 @@
 
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Adsterra Banner Ad (Footer) - Updated Implementation -->
+    <!-- Adsterra Banner Ad (Footer) -->
     <div class="ad-container">
       <div id="adsterra-footer-banner"></div>
-      <script>
-        // Load footer banner ad
-        loadAdsterraScript('https://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js')
-          .then(() => {
-            console.log('Footer banner ad loaded successfully');
-          })
-          .catch(err => {
-            console.error('Error loading footer banner ad:', err);
-            document.getElementById('adsterra-footer-banner').innerHTML = 
-              '<div class="ad-placeholder">Advertisement</div>';
-          });
-      </script>
     </div>
     
     <div class="footer-menu">
@@ -856,16 +765,6 @@
       const loader = document.getElementById('page-loader');
       loader.style.display = 'flex';
       
-      // Initialize video ad
-      const videoAd = document.getElementById('video-ad');
-      if (videoAd) {
-        videoAd.play().catch(e => {
-          console.log('Video autoplay prevented:', e);
-          videoAd.muted = true;
-          videoAd.play().catch(e => console.log('Still cannot play video:', e));
-        });
-      }
-      
       setTimeout(() => {
         loader.style.opacity = '0';
         setTimeout(() => {
@@ -904,7 +803,7 @@
       }, 2000);
     });
 
-    // PWA Service Worker Registration - Updated Implementation
+    // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js', { 
@@ -933,51 +832,47 @@
       }
     });
 
-    // Adsterra Video Ad Implementation
-    function loadVideoAd() {
-      const videoContainer = document.createElement('div');
-      videoContainer.style.position = 'fixed';
-      videoContainer.style.bottom = '20px';
-      videoContainer.style.right = '20px';
-      videoContainer.style.width = '300px';
-      videoContainer.style.height = '250px';
-      videoContainer.style.zIndex = '999';
-      videoContainer.style.backgroundColor = '#f0f0f0';
-      videoContainer.style.borderRadius = '5px';
-      videoContainer.style.overflow = 'hidden';
-      videoContainer.id = 'adsterra-video-ad';
-      
-      document.body.appendChild(videoContainer);
+    // Adsterra Ad Implementation
+    function loadAdsterraAd(containerId, adKey, width, height) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
       
       const script = document.createElement('script');
-      script.src = 'https://www.highperformanceformat.com/video-invoke.js';
-      script.async = true;
-      script.onload = () => {
-        console.log('Video ad script loaded');
-        if (typeof atOptions !== 'undefined') {
-          atOptions = {
-            key: 'videoadkey12345',
-            format: 'iframe',
-            height: 250,
-            width: 300,
-            params: {}
-          };
-          document.write('<scr' + 'ipt type="text/javascript" src="http' + 
-          (location.protocol === 'https:' ? 's' : '') + 
-          '://www.highperformanceformat.com/videoadkey12345/invoke.js"></scr' + 'ipt>');
-        }
+      script.type = 'text/javascript';
+      script.innerHTML = `
+        atOptions = {
+          'key': '${adKey}',
+          'format': 'iframe',
+          'height': ${height},
+          'width': ${width},
+          'params': {}
+        };
+      `;
+      
+      const adScript = document.createElement('script');
+      adScript.type = 'text/javascript';
+      adScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
+      adScript.async = true;
+      
+      adScript.onerror = function() {
+        container.innerHTML = '<div class="ad-placeholder">Advertisement</div>';
       };
-      script.onerror = () => {
-        console.log('Video ad failed to load');
-        videoContainer.innerHTML = '<div style="padding:20px;text-align:center;">Advertisement</div>';
-      };
-      document.head.appendChild(script);
+      
+      container.appendChild(script);
+      container.appendChild(adScript);
     }
     
-    // Load video ad on desktop only
-    if (window.innerWidth > 768) {
-      loadVideoAd();
-    }
+    // Load all ads
+    window.addEventListener('load', () => {
+      // Top Banner (728x90)
+      loadAdsterraAd('adsterra-top-banner', '826edd09ab7b99c6636ef1beda0fe282', 728, 90);
+      
+      // Middle Rectangle (300x250)
+      loadAdsterraAd('adsterra-middle-rectangle', '4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a', 300, 250);
+      
+      // Footer Banner (728x90)
+      loadAdsterraAd('adsterra-footer-banner', '826edd09ab7b99c6636ef1beda0fe282', 728, 90);
+    });
   </script>
 </body>
 </html>
