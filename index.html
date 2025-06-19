@@ -7,12 +7,15 @@
   <meta name="description" content="National mesothelioma lawyer helping victims secure compensation from asbestos companies. Contact our mesothelioma lawyer today for a free consultation.">
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
-  <!-- Favicon and App Icons -->
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#002244">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
   <style>
     /* ===== MOBILE-FIRST STYLES ===== */
     * {
@@ -51,6 +54,12 @@
     }
     #mobile-menu-btn {
       display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 15px;
+      cursor: pointer;
     }
     nav ul {
       display: flex;
@@ -72,12 +81,16 @@
       padding: 5px;
       display: flex;
       align-items: center;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #cc0000;
     }
     .menu-icon {
-      width: 20px;
-      height: 20px;
       margin-right: 8px;
-      filter: invert(1);
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
     }
     
     /* ===== SECTIONS ===== */
@@ -318,9 +331,89 @@
       margin: 0 15px;
       display: flex;
       align-items: center;
+      transition: color 0.3s;
     }
-    .footer-menu .menu-icon {
-      filter: invert(0.8);
+    .footer-menu a:hover {
+      color: white;
+    }
+    
+    /* ===== NEW FEATURES ===== */
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #002244;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 99;
+    }
+    #back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Loading Animation */
+    .loader {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,34,68,0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .loader-content {
+      text-align: center;
+      color: white;
+    }
+    .spinner {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #cc0000;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Notification Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #002244;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
     }
     
     /* ===== MOBILE MENU ===== */
@@ -329,6 +422,7 @@
         flex-direction: column;
         display: none;
         background: #002244;
+        padding: 0;
       }
       nav li {
         margin: 0;
@@ -339,14 +433,13 @@
         padding: 15px;
       }
       #mobile-menu-btn {
-        display: block;
-        background: #cc0000;
-        color: white;
-        border: none;
-        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
-        text-align: center;
-        font-weight: bold;
+      }
+      #mobile-menu-btn .menu-text {
+        margin-left: 10px;
       }
       h1 {
         font-size: 1.8rem;
@@ -403,25 +496,6 @@
         object-fit: cover;
       }
     }
-    
-    /* ===== PWA INSTALL BUTTON ===== */
-    #install-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
-    }
-    #install-btn {
-      background: #002244;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 30px;
-      font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -433,16 +507,27 @@
     <!-- AdSense Video Ad Code Goes Here -->
   </video>
 
+  <!-- Loading Animation -->
+  <div class="loader" id="page-loader">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+  </div>
+
   <!-- Navigation Menu -->
   <nav>
-    <button id="mobile-menu-btn">Menu</button>
+    <button id="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+      <span class="menu-text">Menu</span>
+    </button>
     <ul id="main-menu">
-      <li><a href="#home"><img src="icons/home.png" class="menu-icon" alt="Home">Home</a></li>
-      <li><a href="#about"><img src="icons/about.png" class="menu-icon" alt="About">About</a></li>
-      <li><a href="#process"><img src="icons/process.png" class="menu-icon" alt="Process">Process</a></li>
-      <li><a href="#stats"><img src="icons/results.png" class="menu-icon" alt="Results">Results</a></li>
-      <li><a href="#contact"><img src="icons/contact.png" class="menu-icon" alt="Contact">Contact</a></li>
-      <li><a href="#privacy"><img src="icons/privacy.png" class="menu-icon" alt="Privacy">Privacy</a></li>
+      <li><a href="#home"><i class="fas fa-home menu-icon"></i>Home</a></li>
+      <li><a href="#about"><i class="fas fa-info-circle menu-icon"></i>About</a></li>
+      <li><a href="#process"><i class="fas fa-cogs menu-icon"></i>Process</a></li>
+      <li><a href="#stats"><i class="fas fa-chart-line menu-icon"></i>Results</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope menu-icon"></i>Contact</a></li>
+      <li><a href="#privacy"><i class="fas fa-shield-alt menu-icon"></i>Privacy</a></li>
     </ul>
   </nav>
 
@@ -668,21 +753,24 @@
     </div>
     
     <div class="footer-menu">
-      <a href="#home"><img src="icons/home.png" class="menu-icon" alt="Home">Home</a>
-      <a href="#about"><img src="icons/about.png" class="menu-icon" alt="About">About</a>
-      <a href="#process"><img src="icons/process.png" class="menu-icon" alt="Process">Process</a>
-      <a href="#stats"><img src="icons/results.png" class="menu-icon" alt="Results">Results</a>
-      <a href="#contact"><img src="icons/contact.png" class="menu-icon" alt="Contact">Contact</a>
-      <a href="#privacy"><img src="icons/privacy.png" class="menu-icon" alt="Privacy">Privacy</a>
+      <a href="#home"><i class="fas fa-home menu-icon"></i>Home</a>
+      <a href="#about"><i class="fas fa-info-circle menu-icon"></i>About</a>
+      <a href="#process"><i class="fas fa-cogs menu-icon"></i>Process</a>
+      <a href="#stats"><i class="fas fa-chart-line menu-icon"></i>Results</a>
+      <a href="#contact"><i class="fas fa-envelope menu-icon"></i>Contact</a>
+      <a href="#privacy"><i class="fas fa-shield-alt menu-icon"></i>Privacy</a>
     </div>
     
     <p style="margin-top: 20px;">© 2024 National Mesothelioma Lawyer Firm. All rights reserved.</p>
   </footer>
 
-  <!-- PWA Install Button -->
-  <div id="install-container">
-    <button id="install-btn">Install App</button>
+  <!-- Back to Top Button -->
+  <div id="back-to-top" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
   </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast-notification"></div>
 
   <!-- Mobile Menu Toggle -->
   <script>
@@ -696,9 +784,70 @@
     });
   </script>
 
-  <!-- PWA Service Worker Registration -->
+  <!-- New Features Script -->
   <script>
-    // Register service worker
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Show loading animation
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      loader.style.display = 'flex';
+      
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 300);
+      }, 1000);
+    });
+
+    // Form submission handler
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading
+      const loader = document.getElementById('page-loader');
+      loader.style.display = 'flex';
+      loader.style.opacity = '1';
+      
+      // Simulate form submission
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          
+          // Show success notification
+          const toast = document.getElementById('toast-notification');
+          toast.textContent = 'Your message has been sent successfully!';
+          toast.classList.add('show');
+          
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 3000);
+          
+          // Reset form
+          this.reset();
+        }, 300);
+      }, 2000);
+    });
+
+    // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(registration => {
@@ -709,33 +858,11 @@
       });
     }
 
-    // PWA install prompt
-    let deferredPrompt;
-    const installBtn = document.getElementById('install-btn');
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'block';
-    });
-
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted install prompt');
-        } else {
-          console.log('User dismissed install prompt');
-        }
-        deferredPrompt = null;
-      });
-    });
-
-    window.addEventListener('appinstalled', () => {
-      console.log('PWA was installed');
-      installBtn.style.display = 'none';
-      deferredPrompt = null;
+    // Detect if the page is loaded as a PWA
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('Running as PWA');
+      }
     });
   </script>
 
