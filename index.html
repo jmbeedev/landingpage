@@ -134,6 +134,27 @@
       text-decoration: none;
     }
     
+    /* ===== SEARCH FORM ===== */
+    #ad-search-form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    #ad-search-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    #ad-search-results {
+      margin-top: 20px;
+      text-align: left;
+    }
+    
     /* ===== CONTACT FORM ===== */
     #contact-form {
       max-width: 100%;
@@ -403,8 +424,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#stats">Results</a></li>
+      <li><a href="#search">Search Lawyers</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#privacy">Privacy</a></li>
     </ul>
   </nav>
 
@@ -421,7 +442,7 @@
            data-ad-slot="6209084732"
            data-ad-format="autorelaxed"
            data-ad-region="region1"
-           data-page-url="https://yourdomain.com/mesothelioma-lawyer"
+           data-page-url="https://landingpage-as7.pages.dev/"
            data-keyword="mesothelioma lawyer,asbestos attorney,legal compensation"
            data-matched-content-ui-type="image_stacked"
            data-matched-content-rows-num="2"
@@ -465,7 +486,7 @@
              data-ad-slot="6209084732"
              data-ad-format="autorelaxed"
              data-ad-region="region2"
-             data-page-url="https://yourdomain.com/mesothelioma-lawyer"
+             data-page-url="https://landingpage-as7.pages.dev/"
              data-keyword="mesothelioma lawyer,asbestos lawsuit,legal help"
              data-matched-content-ui-type="image_sidebyside"
              data-matched-content-rows-num="1"
@@ -587,7 +608,7 @@
              data-ad-slot="6209084732"
              data-ad-format="autorelaxed"
              data-ad-region="region3"
-             data-page-url="https://yourdomain.com/mesothelioma-lawyer"
+             data-page-url="https://landingpage-as7.pages.dev/"
              data-keyword="mesothelioma compensation,asbestos lawsuit,legal help"
              data-matched-content-ui-type="image_card_sidebyside"
              data-matched-content-rows-num="1"
@@ -640,6 +661,46 @@
     </div>
   </section>
 
+  <!-- Lawyer Search Section -->
+  <section id="search" style="background: #f5f5f5;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h2>Find <strong>Mesothelioma Lawyers</strong> Near You</h2>
+      
+      <div id="ad-search-form">
+        <input type="text" id="ad-search-input" placeholder="Search for mesothelioma lawyers by state or city...">
+        <button type="button" onclick="searchLawyers()" style="margin-top: 10px;">Search Lawyers</button>
+        
+        <div id="ad-search-results">
+          <!-- Results will be populated here -->
+        </div>
+      </div>
+      
+      <!-- Display Ad 4 (Middle) -->
+      <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3384848035416661"
+             data-ad-slot="6209084732"
+             data-ad-format="autorelaxed"
+             data-ad-region="region4"
+             data-page-url="https://landingpage-as7.pages.dev/"
+             data-keyword="find mesothelioma lawyer,local asbestos attorney"
+             data-matched-content-ui-type="image_card_stacked"
+             data-matched-content-rows-num="2"
+             data-matched-content-columns-num="1"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="ad-fallback" style="display:none;">
+          <h3>Find Local Mesothelioma Lawyers</h3>
+          <p>Connect with top-rated asbestos attorneys in your area</p>
+          <a href="#contact">Get Matched Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact">
     <div style="max-width: 600px; margin: 0 auto;">
@@ -670,25 +731,17 @@
     </div>
   </section>
 
-  <!-- Legal Pages -->
-  <section id="privacy" style="background: #f5f5f5;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <h2>Privacy Policy</h2>
-      <p>This <strong>mesothelioma lawyer</strong> website respects your privacy. We collect information only to evaluate your potential case and will not share your data with third parties without consent.</p>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Display Ad 4 (Footer) -->
+    <!-- Display Ad 5 (Footer) -->
     <div class="ad-container">
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-3384848035416661"
            data-ad-slot="6209084732"
            data-ad-format="autorelaxed"
-           data-ad-region="region4"
-           data-page-url="https://yourdomain.com/mesothelioma-lawyer"
+           data-ad-region="region5"
+           data-page-url="https://landingpage-as7.pages.dev/"
            data-keyword="mesothelioma help,asbestos attorney,legal consultation"
            data-matched-content-ui-type="image_card_stacked"
            data-matched-content-rows-num="2"
@@ -713,29 +766,83 @@
 
   <!-- Ad Loading and Fallback Script -->
   <script>
+  // Initialize ads and handle fallback
   document.addEventListener('DOMContentLoaded', function() {
       // Load all ads
-      (adsbygoogle = window.adsbygoogle || []).push({});
+      loadAllAds();
       
       // Set timeout for ad fallback (5 seconds)
       setTimeout(function() {
-          document.querySelectorAll('.ad-container').forEach(container => {
-              if (!container.querySelector('iframe')) {
-                  container.querySelector('.ad-fallback').style.display = 'block';
-              }
-          });
+          checkAdStatus();
       }, 5000);
-      
-      // Retry failed ads every 30 seconds
-      setInterval(function() {
-          document.querySelectorAll('.ad-container').forEach(container => {
-              if (!container.querySelector('iframe')) {
-                  (adsbygoogle = window.adsbygoogle || []).push({});
-              }
-          });
-      }, 30000);
   });
-  
+
+  // Function to load all ads
+  function loadAllAds() {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      
+      // Additional ad loading for cross-domain compatibility
+      if (window.location.hostname === 'landingpage-as7.pages.dev') {
+          const script = document.createElement('script');
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3384848035416661';
+          script.crossOrigin = 'anonymous';
+          script.async = true;
+          document.head.appendChild(script);
+      }
+  }
+
+  // Check if ads loaded successfully
+  function checkAdStatus() {
+      document.querySelectorAll('.ad-container').forEach(container => {
+          if (!container.querySelector('iframe')) {
+              container.querySelector('.ad-fallback').style.display = 'block';
+              // Retry loading the ad
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          }
+      });
+  }
+
+  // Lawyer search functionality
+  function searchLawyers() {
+      const input = document.getElementById('ad-search-input').value.toLowerCase();
+      const resultsDiv = document.getElementById('ad-search-results');
+      
+      // Sample data - in production you would fetch from an API
+      const lawyers = [
+          { name: "John Smith", location: "New York, NY", specialty: "Mesothelioma Cases", experience: "15 years" },
+          { name: "Sarah Johnson", location: "Los Angeles, CA", specialty: "Asbestos Litigation", experience: "12 years" },
+          { name: "Michael Brown", location: "Chicago, IL", specialty: "Toxic Exposure Cases", experience: "18 years" },
+          { name: "Emily Davis", location: "Houston, TX", specialty: "Mesothelioma Compensation", experience: "10 years" }
+      ];
+      
+      // Filter lawyers based on search input
+      const filtered = lawyers.filter(lawyer => 
+          lawyer.name.toLowerCase().includes(input) || 
+          lawyer.location.toLowerCase().includes(input) ||
+          lawyer.specialty.toLowerCase().includes(input)
+      );
+      
+      // Display results
+      if (filtered.length > 0) {
+          let html = '<h3>Matching Mesothelioma Lawyers:</h3><ul style="list-style-type:none;padding:0;">';
+          filtered.forEach(lawyer => {
+              html += `
+                  <li style="background:white;padding:15px;margin:10px 0;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                      <h4>${lawyer.name}</h4>
+                      <p><strong>Location:</strong> ${lawyer.location}</p>
+                      <p><strong>Specialty:</strong> ${lawyer.specialty}</p>
+                      <p><strong>Experience:</strong> ${lawyer.experience}</p>
+                      <a href="#contact" style="background:#cc0000;color:white;padding:8px 15px;text-decoration:none;display:inline-block;margin-top:10px;">Contact Lawyer</a>
+                  </li>
+              `;
+          });
+          html += '</ul>';
+          resultsDiv.innerHTML = html;
+      } else {
+          resultsDiv.innerHTML = '<p>No mesothelioma lawyers found matching your search. Try a different location or <a href="#contact">contact us</a> for assistance.</p>';
+      }
+  }
+
   // Mobile Menu Toggle
   document.getElementById('mobile-menu-btn').addEventListener('click', function() {
       const menu = document.getElementById('main-menu');
@@ -754,7 +861,7 @@
     "@type": "LegalService",
     "name": "Mesothelioma Lawyer",
     "description": "National mesothelioma lawyer firm specializing in asbestos litigation",
-    "url": "https://www.yourdomain.com",
+    "url": "https://landingpage-as7.pages.dev/",
     "telephone": "+1-800-123-4567",
     "address": {
       "@type": "PostalAddress",
