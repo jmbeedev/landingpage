@@ -14,6 +14,7 @@
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#002244">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="icons/icon-192x192.png">
   <style>
@@ -119,7 +120,7 @@
       display: inline-block;
     }
     
-    /* ===== ADSENSE ADS ===== */
+    /* ===== ADSTERRA ADS CONTAINER ===== */
     .ad-container {
       margin: 25px auto;
       text-align: center;
@@ -127,18 +128,6 @@
       padding: 15px;
       border-radius: 5px;
       overflow: hidden;
-    }
-    .ad-placeholder {
-      width: 100%;
-      height: auto;
-      min-height: 100px;
-      background: #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      font-size: 14px;
-      color: #666;
     }
     
     /* ===== CONTACT FORM ===== */
@@ -535,7 +524,7 @@
     <h1 itemprop="name">National <strong>Mesothelioma Lawyer</strong> Firm</h1>
     <p itemprop="description">Our <strong>mesothelioma lawyer</strong> team has secured over $1 billion for asbestos victims nationwide.</p>
     
-    <!-- Display Ad 1 (Top) - Adsterra Banner -->
+    <!-- Adsterra Banner Ad (Top) -->
     <div class="ad-container">
       <script type="text/javascript">
         atOptions = {
@@ -545,8 +534,10 @@
           'width' : 728,
           'params' : {}
         };
+        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+        (location.protocol === 'https:' ? 's' : '') + 
+        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></script>
     </div>
     
     <div style="max-width: 800px; margin: 0 auto;">
@@ -569,7 +560,7 @@
       <h2>About Our <strong>Mesothelioma Lawyer</strong> Team</h2>
       <p>Our <strong>mesothelioma lawyer</strong> firm was founded in 1995 specifically to help asbestos victims. With over 25 years of experience, our <strong>mesothelioma lawyer</strong> team has handled thousands of cases against major asbestos manufacturers.</p>
       
-      <!-- Display Ad 2 (Middle) - Adsterra Rectangle -->
+      <!-- Adsterra Rectangle Ad (Middle) -->
       <div class="ad-container">
         <script type="text/javascript">
           atOptions = {
@@ -579,8 +570,10 @@
             'width' : 300,
             'params' : {}
           };
+          document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+          (location.protocol === 'https:' ? 's' : '') + 
+          '://www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js"></scr' + 'ipt>');
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js"></script>
       </div>
     </div>
   </section>
@@ -758,7 +751,7 @@
 
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Display Ad 3 (Footer) - Adsterra Leaderboard -->
+    <!-- Adsterra Banner Ad (Footer) -->
     <div class="ad-container">
       <script type="text/javascript">
         atOptions = {
@@ -768,8 +761,10 @@
           'width' : 728,
           'params' : {}
         };
+        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
+        (location.protocol === 'https:' ? 's' : '') + 
+        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></script>
     </div>
     
     <div class="footer-menu">
@@ -870,10 +865,12 @@
     // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-          console.log('ServiceWorker registration successful');
+        navigator.serviceWorker.register('/sw.js', { 
+          scope: '/'
+        }).then(registration => {
+          console.log('SW registered:', registration);
         }).catch(err => {
-          console.log('ServiceWorker registration failed: ', err);
+          console.log('SW registration failed:', err);
         });
       });
     }
@@ -899,9 +896,6 @@
         console.error('Error fetching Adsterra stats:', error);
       }
     }
-    
-    // Call the function when needed
-    // fetchAdsterraStats();
   </script>
 
   <!-- Schema Markup -->
