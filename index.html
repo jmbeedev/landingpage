@@ -5,30 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesothelioma Lawyer | Free Case Review 24/7 | No Win No Fee</title>
   <meta name="description" content="National mesothelioma lawyer helping victims secure compensation from asbestos companies. Contact our mesothelioma lawyer today for a free consultation.">
-  
-  <!-- Preconnect for AdSense -->
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-  <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
-  <link rel="preload" as="script" href="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  
-  <!-- AdSense Script with Advanced Targeting -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3384848035416661"
-     crossorigin="anonymous"></script>
-  <script>
-     (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-3384848035416661",
-          params: {
-               q: "mesothelioma+lawyer+asbestos+compensation+legal+attorney+settlement",
-               gl: "US",
-               hl: "en",
-               industry: "legal",
-               category: "lawyer",
-               topic: "mesothelioma",
-               placement: "mesothelioma_lawyer_landing"
-          }
-     });
-  </script>
-
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <!-- Favicon and App Icons -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <meta name="theme-color" content="#002244">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <style>
     /* ===== MOBILE-FIRST STYLES ===== */
     * {
@@ -77,6 +61,8 @@
     }
     nav li {
       margin: 0 10px;
+      display: flex;
+      align-items: center;
     }
     nav a {
       color: white;
@@ -84,6 +70,14 @@
       font-weight: bold;
       font-size: 16px;
       padding: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .menu-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      filter: invert(1);
     }
     
     /* ===== SECTIONS ===== */
@@ -121,38 +115,17 @@
       border-radius: 5px;
       overflow: hidden;
     }
-    .ad-fallback {
+    .ad-placeholder {
       width: 100%;
-      padding: 20px;
-      background: #002244;
-      color: white;
-      text-align: center;
-    }
-    .ad-fallback a {
-      color: #cc0000;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    
-    /* ===== SEARCH FORM ===== */
-    #ad-search-form {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    #ad-search-input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    #ad-search-results {
-      margin-top: 20px;
-      text-align: left;
+      height: auto;
+      min-height: 100px;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #666;
     }
     
     /* ===== CONTACT FORM ===== */
@@ -332,6 +305,24 @@
       left: -10px;
     }
     
+    /* ===== FOOTER MENU ===== */
+    .footer-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+    .footer-menu a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 15px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-menu .menu-icon {
+      filter: invert(0.8);
+    }
+    
     /* ===== MOBILE MENU ===== */
     @media (max-width: 768px) {
       nav ul {
@@ -344,7 +335,7 @@
         border-bottom: 1px solid #003366;
       }
       nav a {
-        display: block;
+        display: flex;
         padding: 15px;
       }
       #mobile-menu-btn {
@@ -383,6 +374,13 @@
       .timeline-item::after {
         left: 21px;
       }
+      .footer-menu {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-menu a {
+        margin: 5px 0;
+      }
     }
     
     /* ===== DESKTOP-ONLY ELEMENTS ===== */
@@ -405,6 +403,25 @@
         object-fit: cover;
       }
     }
+    
+    /* ===== PWA INSTALL BUTTON ===== */
+    #install-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    #install-btn {
+      background: #002244;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -413,19 +430,19 @@
   <div id="video-ad-overlay"></div>
   <video id="video-ad" autoplay muted loop playsinline>
     <source src="placeholder.mp4" type="video/mp4">
-    <!-- AdSense Video Ad Will Appear Here -->
+    <!-- AdSense Video Ad Code Goes Here -->
   </video>
 
   <!-- Navigation Menu -->
   <nav>
     <button id="mobile-menu-btn">Menu</button>
     <ul id="main-menu">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#stats">Results</a></li>
-      <li><a href="#search">Search Lawyers</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home"><img src="icons/home.png" class="menu-icon" alt="Home">Home</a></li>
+      <li><a href="#about"><img src="icons/about.png" class="menu-icon" alt="About">About</a></li>
+      <li><a href="#process"><img src="icons/process.png" class="menu-icon" alt="Process">Process</a></li>
+      <li><a href="#stats"><img src="icons/results.png" class="menu-icon" alt="Results">Results</a></li>
+      <li><a href="#contact"><img src="icons/contact.png" class="menu-icon" alt="Contact">Contact</a></li>
+      <li><a href="#privacy"><img src="icons/privacy.png" class="menu-icon" alt="Privacy">Privacy</a></li>
     </ul>
   </nav>
 
@@ -436,25 +453,8 @@
     
     <!-- Display Ad 1 (Top) -->
     <div class="ad-container">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-3384848035416661"
-           data-ad-slot="6209084732"
-           data-ad-format="autorelaxed"
-           data-ad-region="region1"
-           data-page-url="https://landingpage-as7.pages.dev/"
-           data-keyword="mesothelioma lawyer,asbestos attorney,legal compensation"
-           data-matched-content-ui-type="image_stacked"
-           data-matched-content-rows-num="2"
-           data-matched-content-columns-num="1"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <div class="ad-fallback" style="display:none;">
-        <h3>Need a Mesothelioma Lawyer?</h3>
-        <p>Contact our legal team for a free case evaluation</p>
-        <a href="#contact">Get Free Consultation</a>
+      <div class="ad-placeholder">
+        AdSense Display (320x100)
       </div>
     </div>
     
@@ -480,25 +480,8 @@
       
       <!-- Display Ad 2 (Middle) -->
       <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3384848035416661"
-             data-ad-slot="6209084732"
-             data-ad-format="autorelaxed"
-             data-ad-region="region2"
-             data-page-url="https://landingpage-as7.pages.dev/"
-             data-keyword="mesothelioma lawyer,asbestos lawsuit,legal help"
-             data-matched-content-ui-type="image_sidebyside"
-             data-matched-content-rows-num="1"
-             data-matched-content-columns-num="2"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="ad-fallback" style="display:none;">
-          <h3>Experienced Mesothelioma Lawyers</h3>
-          <p>We've helped thousands of asbestos victims get compensation</p>
-          <a href="#contact">Call Now: 800-123-4567</a>
+        <div class="ad-placeholder">
+          AdSense Display (300x250)
         </div>
       </div>
     </div>
@@ -600,30 +583,6 @@
         </div>
       </div>
       
-      <!-- Display Ad 3 (Middle) -->
-      <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3384848035416661"
-             data-ad-slot="6209084732"
-             data-ad-format="autorelaxed"
-             data-ad-region="region3"
-             data-page-url="https://landingpage-as7.pages.dev/"
-             data-keyword="mesothelioma compensation,asbestos lawsuit,legal help"
-             data-matched-content-ui-type="image_card_sidebyside"
-             data-matched-content-rows-num="1"
-             data-matched-content-columns-num="2"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="ad-fallback" style="display:none;">
-          <h3>Get Maximum Compensation</h3>
-          <p>Our mesothelioma lawyers have recovered over $1 billion for clients</p>
-          <a href="#contact">Start Your Case Today</a>
-        </div>
-      </div>
-      
       <!-- Timeline Infographic -->
       <h3>Typical <strong>Mesothelioma Lawyer</strong> Case Timeline</h3>
       <div class="timeline">
@@ -661,46 +620,6 @@
     </div>
   </section>
 
-  <!-- Lawyer Search Section -->
-  <section id="search" style="background: #f5f5f5;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <h2>Find <strong>Mesothelioma Lawyers</strong> Near You</h2>
-      
-      <div id="ad-search-form">
-        <input type="text" id="ad-search-input" placeholder="Search for mesothelioma lawyers by state or city...">
-        <button type="button" onclick="searchLawyers()" style="margin-top: 10px;">Search Lawyers</button>
-        
-        <div id="ad-search-results">
-          <!-- Results will be populated here -->
-        </div>
-      </div>
-      
-      <!-- Display Ad 4 (Middle) -->
-      <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3384848035416661"
-             data-ad-slot="6209084732"
-             data-ad-format="autorelaxed"
-             data-ad-region="region4"
-             data-page-url="https://landingpage-as7.pages.dev/"
-             data-keyword="find mesothelioma lawyer,local asbestos attorney"
-             data-matched-content-ui-type="image_card_stacked"
-             data-matched-content-rows-num="2"
-             data-matched-content-columns-num="1"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="ad-fallback" style="display:none;">
-          <h3>Find Local Mesothelioma Lawyers</h3>
-          <p>Connect with top-rated asbestos attorneys in your area</p>
-          <a href="#contact">Get Matched Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Section -->
   <section id="contact">
     <div style="max-width: 600px; margin: 0 auto;">
@@ -731,127 +650,93 @@
     </div>
   </section>
 
+  <!-- Legal Pages -->
+  <section id="privacy" style="background: #f5f5f5;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h2>Privacy Policy</h2>
+      <p>This <strong>mesothelioma lawyer</strong> website respects your privacy. We collect information only to evaluate your potential case and will not share your data with third parties without consent.</p>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Display Ad 5 (Footer) -->
+    <!-- Display Ad 3 (Footer) -->
     <div class="ad-container">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-3384848035416661"
-           data-ad-slot="6209084732"
-           data-ad-format="autorelaxed"
-           data-ad-region="region5"
-           data-page-url="https://landingpage-as7.pages.dev/"
-           data-keyword="mesothelioma help,asbestos attorney,legal consultation"
-           data-matched-content-ui-type="image_card_stacked"
-           data-matched-content-rows-num="2"
-           data-matched-content-columns-num="1"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <div class="ad-fallback" style="display:none;">
-        <h3>Free Case Evaluation</h3>
-        <p>Our mesothelioma lawyers are available 24/7</p>
-        <a href="#contact">Call Now: 800-123-4567</a>
+      <div class="ad-placeholder" style="background: #003366; color: white;">
+        AdSense Display (728x90)
       </div>
     </div>
     
+    <div class="footer-menu">
+      <a href="#home"><img src="icons/home.png" class="menu-icon" alt="Home">Home</a>
+      <a href="#about"><img src="icons/about.png" class="menu-icon" alt="About">About</a>
+      <a href="#process"><img src="icons/process.png" class="menu-icon" alt="Process">Process</a>
+      <a href="#stats"><img src="icons/results.png" class="menu-icon" alt="Results">Results</a>
+      <a href="#contact"><img src="icons/contact.png" class="menu-icon" alt="Contact">Contact</a>
+      <a href="#privacy"><img src="icons/privacy.png" class="menu-icon" alt="Privacy">Privacy</a>
+    </div>
+    
     <p style="margin-top: 20px;">© 2024 National Mesothelioma Lawyer Firm. All rights reserved.</p>
-    <p style="margin-top: 10px; font-size: 14px;">
-      <a href="#privacy" style="color: #ccc;">Privacy Policy</a> | 
-      <a href="#home" style="color: #ccc;">Home</a>
-    </p>
   </footer>
 
-  <!-- Ad Loading and Fallback Script -->
+  <!-- PWA Install Button -->
+  <div id="install-container">
+    <button id="install-btn">Install App</button>
+  </div>
+
+  <!-- Mobile Menu Toggle -->
   <script>
-  // Initialize ads and handle fallback
-  document.addEventListener('DOMContentLoaded', function() {
-      // Load all ads
-      loadAllAds();
-      
-      // Set timeout for ad fallback (5 seconds)
-      setTimeout(function() {
-          checkAdStatus();
-      }, 5000);
-  });
-
-  // Function to load all ads
-  function loadAllAds() {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      
-      // Additional ad loading for cross-domain compatibility
-      if (window.location.hostname === 'landingpage-as7.pages.dev') {
-          const script = document.createElement('script');
-          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3384848035416661';
-          script.crossOrigin = 'anonymous';
-          script.async = true;
-          document.head.appendChild(script);
-      }
-  }
-
-  // Check if ads loaded successfully
-  function checkAdStatus() {
-      document.querySelectorAll('.ad-container').forEach(container => {
-          if (!container.querySelector('iframe')) {
-              container.querySelector('.ad-fallback').style.display = 'block';
-              // Retry loading the ad
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          }
-      });
-  }
-
-  // Lawyer search functionality
-  function searchLawyers() {
-      const input = document.getElementById('ad-search-input').value.toLowerCase();
-      const resultsDiv = document.getElementById('ad-search-results');
-      
-      // Sample data - in production you would fetch from an API
-      const lawyers = [
-          { name: "John Smith", location: "New York, NY", specialty: "Mesothelioma Cases", experience: "15 years" },
-          { name: "Sarah Johnson", location: "Los Angeles, CA", specialty: "Asbestos Litigation", experience: "12 years" },
-          { name: "Michael Brown", location: "Chicago, IL", specialty: "Toxic Exposure Cases", experience: "18 years" },
-          { name: "Emily Davis", location: "Houston, TX", specialty: "Mesothelioma Compensation", experience: "10 years" }
-      ];
-      
-      // Filter lawyers based on search input
-      const filtered = lawyers.filter(lawyer => 
-          lawyer.name.toLowerCase().includes(input) || 
-          lawyer.location.toLowerCase().includes(input) ||
-          lawyer.specialty.toLowerCase().includes(input)
-      );
-      
-      // Display results
-      if (filtered.length > 0) {
-          let html = '<h3>Matching Mesothelioma Lawyers:</h3><ul style="list-style-type:none;padding:0;">';
-          filtered.forEach(lawyer => {
-              html += `
-                  <li style="background:white;padding:15px;margin:10px 0;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                      <h4>${lawyer.name}</h4>
-                      <p><strong>Location:</strong> ${lawyer.location}</p>
-                      <p><strong>Specialty:</strong> ${lawyer.specialty}</p>
-                      <p><strong>Experience:</strong> ${lawyer.experience}</p>
-                      <a href="#contact" style="background:#cc0000;color:white;padding:8px 15px;text-decoration:none;display:inline-block;margin-top:10px;">Contact Lawyer</a>
-                  </li>
-              `;
-          });
-          html += '</ul>';
-          resultsDiv.innerHTML = html;
-      } else {
-          resultsDiv.innerHTML = '<p>No mesothelioma lawyers found matching your search. Try a different location or <a href="#contact">contact us</a> for assistance.</p>';
-      }
-  }
-
-  // Mobile Menu Toggle
-  document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
       const menu = document.getElementById('main-menu');
       if (menu.style.display === 'block') {
-          menu.style.display = 'none';
+        menu.style.display = 'none';
       } else {
-          menu.style.display = 'block';
+        menu.style.display = 'block';
       }
-  });
+    });
+  </script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful');
+        }).catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+
+    // PWA install prompt
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-btn');
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+
+    installBtn.addEventListener('click', () => {
+      installBtn.style.display = 'none';
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted install prompt');
+        } else {
+          console.log('User dismissed install prompt');
+        }
+        deferredPrompt = null;
+      });
+    });
+
+    window.addEventListener('appinstalled', () => {
+      console.log('PWA was installed');
+      installBtn.style.display = 'none';
+      deferredPrompt = null;
+    });
   </script>
 
   <!-- Schema Markup -->
@@ -861,26 +746,14 @@
     "@type": "LegalService",
     "name": "Mesothelioma Lawyer",
     "description": "National mesothelioma lawyer firm specializing in asbestos litigation",
-    "url": "https://landingpage-as7.pages.dev/",
+    "url": "https://www.yourdomain.com",
     "telephone": "+1-800-123-4567",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Legal Ave",
-      "addressLocality": "New York",
-      "addressRegion": "NY",
-      "postalCode": "10001",
       "addressCountry": "US"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "40.7128",
-      "longitude": "-74.0060"
-    },
-    "keywords": "mesothelioma lawyer,asbestos attorney,legal compensation",
-    "sameAs": [
-      "https://facebook.com/yourlawfirm",
-      "https://twitter.com/yourlawfirm"
-    ]
+    "keywords": "mesothelioma lawyer",
+    "sameAs": []
   }
   </script>
 </body>
