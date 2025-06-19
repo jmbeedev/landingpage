@@ -500,22 +500,10 @@
 </head>
 <body>
 
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '826edd09ab7b99c6636ef1beda0fe282',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></script>
-
   <!-- Video Ad Background (Desktop Only) -->
   <div id="video-ad-overlay"></div>
   <video id="video-ad" autoplay muted loop playsinline>
     <source src="placeholder.mp4" type="video/mp4">
-    <!-- AdSense Video Ad Code Goes Here -->
   </video>
 
   <!-- Loading Animation -->
@@ -530,7 +518,7 @@
   <nav>
     <button id="mobile-menu-btn">
       <i class="fas fa-bars"></i>
-      <span class="menu-text">Mesothelioma Lawyer</span>
+      <span class="menu-text">Menu</span>
     </button>
     <ul id="main-menu">
       <li><a href="#home"><i class="fas fa-home menu-icon"></i>Home</a></li>
@@ -547,11 +535,18 @@
     <h1 itemprop="name">National <strong>Mesothelioma Lawyer</strong> Firm</h1>
     <p itemprop="description">Our <strong>mesothelioma lawyer</strong> team has secured over $1 billion for asbestos victims nationwide.</p>
     
-    <!-- Display Ad 1 (Top) -->
+    <!-- Display Ad 1 (Top) - Adsterra Banner -->
     <div class="ad-container">
-      <div class="ad-placeholder">
-        AdSense Display (320x100)
-      </div>
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '826edd09ab7b99c6636ef1beda0fe282',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></script>
     </div>
     
     <div style="max-width: 800px; margin: 0 auto;">
@@ -574,11 +569,18 @@
       <h2>About Our <strong>Mesothelioma Lawyer</strong> Team</h2>
       <p>Our <strong>mesothelioma lawyer</strong> firm was founded in 1995 specifically to help asbestos victims. With over 25 years of experience, our <strong>mesothelioma lawyer</strong> team has handled thousands of cases against major asbestos manufacturers.</p>
       
-      <!-- Display Ad 2 (Middle) -->
+      <!-- Display Ad 2 (Middle) - Adsterra Rectangle -->
       <div class="ad-container">
-        <div class="ad-placeholder">
-          AdSense Display (300x250)
-        </div>
+        <script type="text/javascript">
+          atOptions = {
+            'key' : '4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js"></script>
       </div>
     </div>
   </section>
@@ -756,11 +758,18 @@
 
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Display Ad 3 (Footer) -->
+    <!-- Display Ad 3 (Footer) - Adsterra Leaderboard -->
     <div class="ad-container">
-      <div class="ad-placeholder" style="background: #003366; color: white;">
-        AdSense Display (728x90)
-      </div>
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '826edd09ab7b99c6636ef1beda0fe282',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></script>
     </div>
     
     <div class="footer-menu">
@@ -875,6 +884,24 @@
         console.log('Running as PWA');
       }
     });
+
+    // Adsterra API Integration
+    const adsterraToken = 'df39ec5b099c30b0bd9e2c1942b82534';
+    const apiBaseUrl = 'https://api3.adsterratools.com/publisher';
+    
+    // Function to fetch Adsterra stats
+    async function fetchAdsterraStats() {
+      try {
+        const response = await fetch(`${apiBaseUrl}/stats.json?token=${adsterraToken}`);
+        const data = await response.json();
+        console.log('Adsterra Stats:', data);
+      } catch (error) {
+        console.error('Error fetching Adsterra stats:', error);
+      }
+    }
+    
+    // Call the function when needed
+    // fetchAdsterraStats();
   </script>
 
   <!-- Schema Markup -->
