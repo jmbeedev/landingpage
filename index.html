@@ -4,6 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Best CRM Software | Streamline Your Business Operations</title>
+  
+<script>
+  // Buat SVG favicon
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect x="10" y="30" width="15" height="40" rx="2" ry="2" fill="#00a0e1"/>
+      <rect x="30" y="20" width="15" height="50" rx="2" ry="2" fill="#002244"/>
+      <rect x="50" y="25" width="15" height="45" rx="2" ry="2" fill="#00a0e1"/>
+      <text x="70" y="50" font-family="Arial" font-size="14" fill="#002244" font-weight="bold">CRM</text>
+    </svg>
+  `;
+
+  // Convert SVG to base64
+  const svgBase64 = btoa(svg);
+
+  // Update link favicon
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'icon');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('type', 'image/svg+xml');
+  link.setAttribute('href', 'data:image/svg+xml;base64,' + svgBase64);
+</script>
+
+  
   <meta name="description" content="Powerful CRM software to manage customer relationships, sales pipelines, and marketing campaigns. Boost your business growth with our all-in-one CRM solution.">
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
