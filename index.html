@@ -495,6 +495,39 @@
         object-fit: cover;
       }
     }
+
+    
+  /* Animasi Awan */
+  @keyframes cloud-move {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+  }
+  .cloud-animation {
+    animation: cloud-move 6s ease-in-out infinite;
+  }
+
+  /* Fade In */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+  }
+  .fade-in-delay-1 { animation-delay: 0.2s; }
+  .fade-in-delay-2 { animation-delay: 0.4s; }
+  .fade-in-delay-3 { animation-delay: 0.6s; }
+
+  /* Blinking Dot */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .blink {
+    animation: blink 1.5s infinite;
+  }
   </style>
 </head>
 <body>
@@ -637,6 +670,17 @@
     </div>
   </div>
 </section>
+
+<!-- Dynamic Illustration -->
+<div id="crm-illustration" style="
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  display: none;
+">
+  <h3>Visual Overview of Our <strong>CRM Software</strong></h3>
+  <div id="svg-container" style="margin-top: 20px;"></div>
+</div>
 
   <!-- Benefits Section -->
   <section id="benefits">
@@ -947,6 +991,107 @@
     "keywords": "CRM software, customer relationship management, sales software"
   }
   </script>
+
+
+
+  <script>
+  function createCRMSVG() {
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "200");
+    svg.setAttribute("viewBox", "0 0 400 200");
+
+    // Awan latar belakang
+    const cloud = document.createElementNS(svgNS, "path");
+    cloud.setAttribute("d", "M160,90 C150,80 130,80 120,90 C110,100 130,120 150,110 C170,100 170,90 160,90 Z");
+    cloud.setAttribute("fill", "#ffffff");
+    cloud.setAttribute("stroke", "#ccc");
+    cloud.setAttribute("stroke-width", "1");
+    cloud.classList.add("cloud-animation");
+    svg.appendChild(cloud);
+
+    // Laptop
+    const laptopBody = document.createElementNS(svgNS, "rect");
+    laptopBody.setAttribute("x", "160");
+    laptopBody.setAttribute("y", "100");
+    laptopBody.setAttribute("width", "80");
+    laptopBody.setAttribute("height", "50");
+    laptopBody.setAttribute("rx", "8");
+    laptopBody.setAttribute("ry", "8");
+    laptopBody.setAttribute("fill", "#002244");
+    svg.appendChild(laptopBody);
+
+    const laptopScreen = document.createElementNS(svgNS, "rect");
+    laptopScreen.setAttribute("x", "170");
+    laptopScreen.setAttribute("y", "105");
+    laptopScreen.setAttribute("width", "60");
+    laptopScreen.setAttribute("height", "30");
+    laptopScreen.setAttribute("rx", "4");
+    laptopScreen.setAttribute("ry", "4");
+    laptopScreen.setAttribute("fill", "#f0f8ff");
+    svg.appendChild(laptopScreen);
+
+    // Titik aktivitas di layar
+    const activityDot = document.createElementNS(svgNS, "circle");
+    activityDot.setAttribute("cx", "200");
+    activityDot.setAttribute("cy", "120");
+    activityDot.setAttribute("r", "3");
+    activityDot.setAttribute("fill", "#00a0e1");
+    activityDot.classList.add("blink");
+    svg.appendChild(activityDot);
+
+    // Garis koneksi antara pelanggan dan sistem
+    const line = document.createElementNS(svgNS, "line");
+    line.setAttribute("x1", "280");
+    line.setAttribute("y1", "90");
+    line.setAttribute("x2", "200");
+    line.setAttribute("y2", "105");
+    line.setAttribute("stroke", "#00a0e1");
+    line.setAttribute("stroke-width", "2");
+    line.setAttribute("stroke-dasharray", "5,5");
+    line.classList.add("fade-in");
+    svg.appendChild(line);
+
+    // Ikon orang/pelanggan
+    for (let i = 0; i < 3; i++) {
+      const offsetX = i * 50;
+      const group = document.createElementNS(svgNS, "g");
+      group.classList.add("fade-in", `fade-in-delay-${i+1}`);
+
+      const head = document.createElementNS(svgNS, "circle");
+      head.setAttribute("cx", 280 + offsetX);
+      head.setAttribute("cy", 90);
+      head.setAttribute("r", 10);
+      head.setAttribute("fill", "#00a0e1");
+
+      const body = document.createElementNS(svgNS, "rect");
+      body.setAttribute("x", 275 + offsetX);
+      body.setAttribute("y", 100);
+      body.setAttribute("width", 10);
+      body.setAttribute("height", 20);
+      body.setAttribute("fill", "#00a0e1");
+
+      group.appendChild(head);
+      group.appendChild(body);
+      svg.appendChild(group);
+    }
+
+    return svg;
+  }
+
+  // Masukkan SVG ke DOM
+  window.addEventListener("load", () => {
+    const illustration = document.getElementById("crm-illustration");
+    setTimeout(() => {
+      illustration.style.display = "block";
+
+      const svgContainer = document.getElementById("svg-container");
+      const crmSVG = createCRMSVG();
+      svgContainer.appendChild(crmSVG);
+    }, 1000);
+  });
+</script>
 
   <!-- Load Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
