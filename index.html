@@ -671,15 +671,23 @@
   </div>
 </section>
 
-<!-- Dynamic Illustration -->
-<div id="crm-illustration" style="
-  max-width: 800px;
+<!-- Dynamic Illustration with Icons -->
+<div id="crm-story-illustration" style="
+  max-width: 100%;
   margin: 40px auto;
   text-align: center;
   display: none;
 ">
-  <h3>Visual Overview of Our <strong>CRM Software</strong></h3>
-  <div id="svg-container" style="margin-top: 20px;"></div>
+  <h3>How Our <strong>CRM Software</strong> Works</h3>
+  <div id="icon-story-container" style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+    position: relative;
+  "></div>
 </div>
 
   <!-- Benefits Section -->
@@ -994,101 +1002,111 @@
 
 
 
-  <script>
-  function createCRMSVG() {
-    const svgNS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("width", "100%");
-    svg.setAttribute("height", "200");
-    svg.setAttribute("viewBox", "0 0 400 200");
+<script>
+  function createCRMStory() {
+    const container = document.getElementById("icon-story-container");
 
-    // Awan latar belakang
-    const cloud = document.createElementNS(svgNS, "path");
-    cloud.setAttribute("d", "M160,90 C150,80 130,80 120,90 C110,100 130,120 150,110 C170,100 170,90 160,90 Z");
-    cloud.setAttribute("fill", "#ffffff");
-    cloud.setAttribute("stroke", "#ccc");
-    cloud.setAttribute("stroke-width", "1");
-    cloud.classList.add("cloud-animation");
-    svg.appendChild(cloud);
+    // Step data
+    const steps = [
+      {
+        icon: "fas fa-user",
+        label: "Customer Interaction",
+        color: "#00a0e1"
+      },
+      {
+        icon: "fas fa-comment-dots",
+        label: "Communication Tracked",
+        color: "#00a0e1"
+      },
+      {
+        icon: "fas fa-database",
+        label: "Data Stored in CRM",
+        color: "#00a0e1"
+      },
+      {
+        icon: "fas fa-chart-bar",
+        label: "Insights & Reports",
+        color: "#00a0e1"
+      },
+      {
+        icon: "fas fa-bullhorn",
+        label: "Targeted Marketing",
+        color: "#00a0e1"
+      }
+    ];
 
-    // Laptop
-    const laptopBody = document.createElementNS(svgNS, "rect");
-    laptopBody.setAttribute("x", "160");
-    laptopBody.setAttribute("y", "100");
-    laptopBody.setAttribute("width", "80");
-    laptopBody.setAttribute("height", "50");
-    laptopBody.setAttribute("rx", "8");
-    laptopBody.setAttribute("ry", "8");
-    laptopBody.setAttribute("fill", "#002244");
-    svg.appendChild(laptopBody);
+    // Garis alur horizontal
+    const line = document.createElement("div");
+    line.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #00a0e1;
+      z-index: -1;
+      transform: translateY(-50%);
+    `;
+    container.appendChild(line);
 
-    const laptopScreen = document.createElementNS(svgNS, "rect");
-    laptopScreen.setAttribute("x", "170");
-    laptopScreen.setAttribute("y", "105");
-    laptopScreen.setAttribute("width", "60");
-    laptopScreen.setAttribute("height", "30");
-    laptopScreen.setAttribute("rx", "4");
-    laptopScreen.setAttribute("ry", "4");
-    laptopScreen.setAttribute("fill", "#f0f8ff");
-    svg.appendChild(laptopScreen);
+    // Titik animasi bergerak di garis
+    const runner = document.createElement("div");
+    runner.innerHTML = `<i class="fas fa-circle" style="font-size: 14px; color: #ffffff; box-shadow: 0 0 5px rgba(0,0,0,0.3);"></i>`;
+    runner.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      animation: runLine 8s linear infinite;
+      z-index: 0;
+    `;
+    container.appendChild(runner);
 
-    // Titik aktivitas di layar
-    const activityDot = document.createElementNS(svgNS, "circle");
-    activityDot.setAttribute("cx", "200");
-    activityDot.setAttribute("cy", "120");
-    activityDot.setAttribute("r", "3");
-    activityDot.setAttribute("fill", "#00a0e1");
-    activityDot.classList.add("blink");
-    svg.appendChild(activityDot);
+    // Keyframes untuk animasi garis
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+      @keyframes runLine {
+        0% { left: 0; opacity: 1; }
+        95% { left: 100%; }
+        100% { left: 100%; opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
 
-    // Garis koneksi antara pelanggan dan sistem
-    const line = document.createElementNS(svgNS, "line");
-    line.setAttribute("x1", "280");
-    line.setAttribute("y1", "90");
-    line.setAttribute("x2", "200");
-    line.setAttribute("y2", "105");
-    line.setAttribute("stroke", "#00a0e1");
-    line.setAttribute("stroke-width", "2");
-    line.setAttribute("stroke-dasharray", "5,5");
-    line.classList.add("fade-in");
-    svg.appendChild(line);
+    // Buat ikon step
+    steps.forEach((step, index) => {
+      const stepDiv = document.createElement("div");
+      stepDiv.classList.add("story-step");
+      stepDiv.style.textAlign = "center";
 
-    // Ikon orang/pelanggan
-    for (let i = 0; i < 3; i++) {
-      const offsetX = i * 50;
-      const group = document.createElementNS(svgNS, "g");
-      group.classList.add("fade-in", `fade-in-delay-${i+1}`);
+      const iconWrapper = document.createElement("div");
+      iconWrapper.innerHTML = `<i class="${step.icon}" style="font-size: 36px; color: ${step.color};"></i>`;
+      iconWrapper.style.marginBottom = "10px";
 
-      const head = document.createElementNS(svgNS, "circle");
-      head.setAttribute("cx", 280 + offsetX);
-      head.setAttribute("cy", 90);
-      head.setAttribute("r", 10);
-      head.setAttribute("fill", "#00a0e1");
+      const label = document.createElement("div");
+      label.textContent = step.label;
+      label.style.fontSize = "14px";
+      label.style.fontWeight = "bold";
+      label.style.color = "#333";
 
-      const body = document.createElementNS(svgNS, "rect");
-      body.setAttribute("x", 275 + offsetX);
-      body.setAttribute("y", 100);
-      body.setAttribute("width", 10);
-      body.setAttribute("height", 20);
-      body.setAttribute("fill", "#00a0e1");
+      stepDiv.appendChild(iconWrapper);
+      stepDiv.appendChild(label);
+      container.appendChild(stepDiv);
 
-      group.appendChild(head);
-      group.appendChild(body);
-      svg.appendChild(group);
-    }
-
-    return svg;
+      // Fade-in animation
+      setTimeout(() => {
+        iconWrapper.style.transition = "opacity 0.8s ease";
+        iconWrapper.style.opacity = "1";
+      }, index * 300);
+    });
   }
 
-  // Masukkan SVG ke DOM
   window.addEventListener("load", () => {
-    const illustration = document.getElementById("crm-illustration");
+    const illustration = document.getElementById("crm-story-illustration");
     setTimeout(() => {
       illustration.style.display = "block";
-
-      const svgContainer = document.getElementById("svg-container");
-      const crmSVG = createCRMSVG();
-      svgContainer.appendChild(crmSVG);
+      createCRMStory();
     }, 1000);
   });
 </script>
