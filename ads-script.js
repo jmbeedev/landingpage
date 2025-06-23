@@ -32,8 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                  data-ad-slot="YOUR_AD_SLOT_ID"
                  data-ad-format="rectangle"
                  data-full-width-responsive="true"
-                 data-video-ad-start="on"
-                 data-adtest="on">
+                 data-video-ad-start="on">
             </ins>
         `;
 
@@ -78,10 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
                  data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
                  data-ad-slot="YOUR_AD_FOOTER_SLOT"
                  data-ad-format="banner"
-                 data-ad-layout-key="-gw-1+2a-1k+q"
                  data-full-width-responsive="true"
-                 data-video-ad-start="on"
-                 data-adtest="on">
+                 data-video-ad-start="on">
             </ins>
         `;
 
@@ -149,8 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                  data-ad-slot="YOUR_AD_MODAL_SLOT"
                  data-ad-format="auto"
                  data-full-width-responsive="true"
-                 data-video-ad-start="on"
-                 data-adtest="on">
+                 data-video-ad-start="on">
             </ins>
         `;
 
@@ -180,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === 4. Fallback jika iklan tidak muncul ===
+    // === 4. Fallback jika iklan gagal muncul ===
     function showFallbackAd(container, type = "default") {
         const fallback = document.createElement("div");
         fallback.style.cssText = `
@@ -199,7 +195,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>Looking for CRM Solutions?</strong></p>
             <p>${messages[type]}</p>
             <a href="#contact" style="display:inline-block; margin-top:10px;">
-                <button style="background:#00a0e1;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;">
+                <button style="
+                    background:#00a0e1;
+                    color:white;
+                    border:none;
+                    padding:10px 20px;
+                    border-radius:5px;
+                    cursor:pointer;
+                    font-weight: bold;
+                ">
                     Start Free Trial
                 </button>
             </a>
@@ -213,9 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", () => {
         insertFloatingAd();
         insertFooterAd();
-
-        // Delay modal ad to avoid overload
-        setTimeout(insertModalAd, 3000);
+        setTimeout(insertModalAd, 3000); // Delay modal ad to avoid overload
     });
 
     window.addEventListener("scroll", () => {
@@ -231,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // === 6. Prioritas Video Iklan ke Google AdSense ===
+    // === 6. Signal Prioritas Video Ads ke Google AdSense ===
     function prioritizeVideoAds() {
         const allAds = document.querySelectorAll('.adsbygoogle');
         allAds.forEach(ad => {
@@ -239,7 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Panggil setelah DOM siap
     window.addEventListener("load", () => {
         prioritizeVideoAds();
     });
@@ -265,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(lazyLoadAds, 1000);
     });
 
-    // === 8. Signal Analytics ke Google Tag Manager / GA4 (opsional) ===
+    // === 8. Tracking Analytics Saat Iklan Muncul (Opsional) ===
     function trackAdEvent(eventType) {
         if (typeof gtag !== "undefined") {
             gtag('event', eventType, {
@@ -278,41 +279,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Tambahkan tracking saat iklan muncul
     window.addEventListener("load", () => {
-        document.querySelectorAll('#floating-ad, #footer-ad, #modal-ad').forEach(ad => {
-            if (ad.style.display === 'block') {
+        ['floating-ad', 'footer-ad', 'modal-ad'].forEach(id => {
+            const adEl = document.getElementById(id);
+            if (adEl && adEl.style.display === 'block') {
                 trackAdEvent('ad_shown');
             }
         });
     });
 
-    // === 9. Aksesibilitas Iklan ===
-    function enhanceAccessibility() {
-        const ads = document.querySelectorAll('.adsbygoogle');
-        ads.forEach(ad => {
-            ad.setAttribute('role', 'complementary');
-            ad.setAttribute('aria-label', 'Promotional Banner: Try our CRM Software for free');
-        });
-    }
-
-    window.addEventListener("load", enhanceAccessibility);
-
-    // === 10. Fitur Tambahan: Tooltip Promosi CRM di Tombol CTA ===
-    function addTooltipToCTA() {
-        const buttons = document.querySelectorAll("button, a[href='#contact']");
-        buttons.forEach(btn => {
-            btn.addEventListener("mouseover", () => {
-                if (!btn.getAttribute('title')) {
-                    btn.setAttribute('title', 'Start your free CRM trial now!');
-                }
-            });
-        });
-    }
-
-    window.addEventListener("load", addTooltipToCTA);
-
-    // === 11. Auto-hide floating ad saat hover terlalu lama ===
+    // === 9. Auto-hide floating ad saat hover terlalu lama ===
     function autoHideFloatingAd() {
         const floatingAd = document.getElementById('floating-ad');
         if (!floatingAd) return;
@@ -331,4 +307,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("load", autoHideFloatingAd);
+
+    // === 10. Pastikan semua iklan dirender dengan benar ===
+    function renderAllAds() {
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.error("Adsense rendering failed:", e);
+        }
+    }
+
+    // Tambahkan observer untuk trigger push ulang jika ada iklan baru
+    function observeNewAds() {
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node.querySelector && node.querySelector('.adsbygoogle')) {
+                        renderAllAds();
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    window.addEventListener("load", () => {
+        renderAllAds();
+        observeNewAds();
+    });
 });
