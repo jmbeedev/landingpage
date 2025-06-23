@@ -120,16 +120,6 @@
       display: inline-block;
     }
     
-    /* ===== ADSTERRA ADS CONTAINER ===== */
-    .ad-container {
-      margin: 25px auto;
-      text-align: center;
-      background: #f0f0f0;
-      padding: 15px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    
     /* ===== CONTACT FORM ===== */
     #contact-form {
       max-width: 100%;
@@ -544,22 +534,6 @@
     <h1 itemprop="name">The Best <strong>CRM Software</strong> for Growing Businesses</h1>
     <p itemprop="description">Our <strong>CRM software</strong> helps businesses streamline customer relationships, boost sales, and improve marketing ROI.</p>
     
-    <!-- Adsterra Banner Ad (Top) -->
-    <div class="ad-container">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '826edd09ab7b99c6636ef1beda0fe282',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
-        (location.protocol === 'https:' ? 's' : '') + 
-        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
-      </script>
-    </div>
-    
     <div style="max-width: 800px; margin: 0 auto;">
       <h2>What Our <strong>CRM Software</strong> Can Do For You</h2>
       <ul style="text-align: left; margin: 20px 0;">
@@ -608,22 +582,6 @@
           <h3>Task Automation</h3>
           <p>Automate repetitive tasks and follow-ups with our <strong>CRM software</strong> workflows</p>
         </div>
-      </div>
-      
-      <!-- Adsterra Rectangle Ad (Middle) -->
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : '4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-          };
-          document.write('<scr' + 'ipt type="text/javascript" src="http' + 
-          (location.protocol === 'https:' ? 's' : '') + 
-          '://www.highperformanceformat.com/4b4a3a9c5e5c5a5a5a5a5a5a5a5a5a5a/invoke.js"></scr' + 'ipt>');
-        </script>
       </div>
     </div>
   </section>
@@ -803,22 +761,6 @@
 
   <!-- Footer -->
   <footer style="background: #002244; color: white; padding: 30px 20px; text-align: center;">
-    <!-- Adsterra Banner Ad (Footer) -->
-    <div class="ad-container">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '826edd09ab7b99c6636ef1beda0fe282',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-        document.write('<scr' + 'ipt type="text/javascript" src="http' + 
-        (location.protocol === 'https:' ? 's' : '') + 
-        '://www.highperformanceformat.com/826edd09ab7b99c6636ef1beda0fe282/invoke.js"></scr' + 'ipt>');
-      </script>
-    </div>
-    
     <div class="footer-menu">
       <a href="#home"><i class="fas fa-home menu-icon"></i>Home</a>
       <a href="#features"><i class="fas fa-star menu-icon"></i>Features</a>
@@ -933,21 +875,6 @@
         console.log('Running as PWA');
       }
     });
-
-    // Adsterra API Integration
-    const adsterraToken = 'df39ec5b099c30b0bd9e2c1942b82534';
-    const apiBaseUrl = 'https://api3.adsterratools.com/publisher';
-    
-    // Function to fetch Adsterra stats
-    async function fetchAdsterraStats() {
-      try {
-        const response = await fetch(`${apiBaseUrl}/stats.json?token=${adsterraToken}`);
-        const data = await response.json();
-        console.log('Adsterra Stats:', data);
-      } catch (error) {
-        console.error('Error fetching Adsterra stats:', error);
-      }
-    }
   </script>
 
   <!-- Schema Markup -->
